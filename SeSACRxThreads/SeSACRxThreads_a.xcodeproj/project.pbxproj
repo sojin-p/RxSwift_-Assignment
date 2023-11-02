@@ -30,6 +30,7 @@
 		041280782AF1D14000972552 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280772AF1D14000972552 /* Resource.swift */; };
 		233C143B2AF396FB00098B37 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C143A2AF396FB00098B37 /* BirthdayViewModel.swift */; };
 		233C143D2AF3B0DA00098B37 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C143C2AF3B0DA00098B37 /* PhoneViewModel.swift */; };
+		233C143F2AF3BCB100098B37 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C143E2AF3BCB100098B37 /* NicknameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		041280772AF1D14000972552 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		233C143A2AF396FB00098B37 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
 		233C143C2AF3B0DA00098B37 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
+		233C143E2AF3BCB100098B37 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				041280702AEFAD3D00972552 /* PhoneViewController.swift */,
 				233C143C2AF3B0DA00098B37 /* PhoneViewModel.swift */,
 				041280722AEFAD4B00972552 /* NicknameViewController.swift */,
+				233C143E2AF3BCB100098B37 /* NicknameViewModel.swift */,
 			);
 			path = SignUpOptional;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				0412806F2AEFAD2D00972552 /* BirthdayViewController.swift in Sources */,
 				041280652AEFA2F000972552 /* SignTextField.swift in Sources */,
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
+				233C143F2AF3BCB100098B37 /* NicknameViewModel.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
 				233C143B2AF396FB00098B37 /* BirthdayViewModel.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
