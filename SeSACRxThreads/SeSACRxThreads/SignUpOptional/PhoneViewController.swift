@@ -14,13 +14,12 @@ class PhoneViewController: UIViewController {
    
     let phoneTextField = SignTextField(placeholderText: "연락처를 입력해주세요")
     let nextButton = PointButton(title: "다음")
-    
-    let phone = BehaviorSubject(value: "010111111")
+
     let buttonColor = BehaviorSubject(value: UIColor.lightGray)
     let borderColor = BehaviorSubject(value: UIColor.red)
-    let buttonEnabled = BehaviorSubject(value: false)
     
     let disposeBag = DisposeBag()
+    let viewModel = PhoneViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +34,7 @@ class PhoneViewController: UIViewController {
     }
     
     func bind() {
-        phone
+        viewModel.phone
             .bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
         
@@ -48,7 +47,7 @@ class PhoneViewController: UIViewController {
             .bind(to: phoneTextField.layer.rx.borderColor)
             .disposed(by: disposeBag)
         
-        buttonEnabled
+        viewModel.buttonEnabled
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
@@ -56,21 +55,16 @@ class PhoneViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .subscribe(with: self) { owner, text in
                 let result = text.formated(by: "###-####-####")
-                owner.phone.onNext(result)
+                owner.viewModel.phone.onNext(result)
             }
             .disposed(by: disposeBag)
         
-        phone
-            .observe(on: MainScheduler.instance)
-            .map { $0.count > 10 }
-            .subscribe(with: self) { owner, bool in
-                let color = bool ? UIColor.black : UIColor.lightGray
-                let border = bool ? UIColor.black : UIColor.red
-                owner.borderColor.onNext(border)
-                owner.buttonColor.onNext(color)
-                owner.buttonEnabled.onNext(bool)
-            }
-            .disposed(by: disposeBag)
+        viewModel.validationPhone { [weak self] bool in
+            let color = bool ? UIColor.black : UIColor.lightGray
+            let border = bool ? UIColor.black : UIColor.red
+            self?.borderColor.onNext(border)
+            self?.buttonColor.onNext(color)
+        }
         
     }
     
