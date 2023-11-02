@@ -52,19 +52,18 @@ class PhoneViewController: UIViewController {
             .disposed(by: disposeBag)
         
         phoneTextField.rx.text.orEmpty
-            .observe(on: MainScheduler.instance)
-            .subscribe(with: self) { owner, text in
-                let result = text.formated(by: "###-####-####")
-                owner.viewModel.phone.onNext(result)
-            }
+            .bind(to: viewModel.phone)
             .disposed(by: disposeBag)
         
-        viewModel.validationPhone { [weak self] bool in
-            let color = bool ? UIColor.black : UIColor.lightGray
-            let border = bool ? UIColor.black : UIColor.red
-            self?.borderColor.onNext(border)
-            self?.buttonColor.onNext(color)
-        }
+        viewModel.buttonEnabled
+            .observe(on: MainScheduler.instance)
+            .subscribe(with: self, onNext: { owner, bool in
+                let color = bool ? UIColor.black : UIColor.lightGray
+                let border = bool ? UIColor.black : UIColor.red
+                owner.borderColor.onNext(border)
+                owner.buttonColor.onNext(color)
+            })
+            .disposed(by: disposeBag)
         
     }
     

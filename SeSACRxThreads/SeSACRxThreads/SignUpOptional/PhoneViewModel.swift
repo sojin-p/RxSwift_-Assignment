@@ -15,13 +15,27 @@ class PhoneViewModel {
     
     let disposeBag = DisposeBag()
     
-    func validationPhone(completion: @escaping (Bool) -> Void) {
+    init() {
+        formattedPhone()
+        validationPhone()
+    }
+    
+    func validationPhone() {
         phone
             .observe(on: MainScheduler.instance)
             .map { $0.count > 10 }
             .subscribe(with: self) { owner, bool in
-                completion(bool)
                 owner.buttonEnabled.onNext(bool)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func formattedPhone() {
+        phone
+            .observe(on: MainScheduler.instance)
+            .subscribe(with: self) { owner, text in
+                let result = text.formated(by: "###-####-####")
+                owner.phone.onNext(result)
             }
             .disposed(by: disposeBag)
     }
