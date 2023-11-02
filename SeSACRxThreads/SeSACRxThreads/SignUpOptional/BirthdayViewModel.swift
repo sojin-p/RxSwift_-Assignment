@@ -30,4 +30,20 @@ class BirthdayViewModel {
             .disposed(by: disposeBag)
     }
     
+    func ageValidation(completion: @escaping (Bool) -> Void) {
+        year
+            .observe(on: MainScheduler.instance)
+            .map({ year in
+                let component = Calendar.current.dateComponents([.year], from: Date())
+                let age = (component.year ?? 0) - year
+                return age > 16
+            })
+            .subscribe(with: self) { owner, bool in
+                owner.buttonEnabled.onNext(bool)
+                completion(bool)
+
+            }
+            .disposed(by: disposeBag)
+    }
+    
 }

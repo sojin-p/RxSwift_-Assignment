@@ -100,19 +100,10 @@ class BirthdayViewController: UIViewController {
             .bind(to: nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        viewModel.year
-            .observe(on: MainScheduler.instance)
-            .map({ year in
-                let component = Calendar.current.dateComponents([.year], from: Date())
-                let age = (component.year ?? 0) - year
-                return age > 16
-            })
-            .subscribe(with: self) { owner, bool in
-                let color = bool ? UIColor.black : UIColor.lightGray
-                owner.viewModel.buttonEnabled.onNext(bool)
-                owner.buttonColor.onNext(color)
-            }
-            .disposed(by: disposeBag)
+        viewModel.ageValidation { [weak self] bool in
+            let color = bool ? UIColor.black : UIColor.lightGray
+            self?.buttonColor.onNext(color)
+        }
         
         viewModel.year
             .map { "\($0)년" }
