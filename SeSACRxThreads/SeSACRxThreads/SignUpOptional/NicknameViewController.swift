@@ -15,8 +15,6 @@ class NicknameViewController: UIViewController {
     let nicknameTextField = SignTextField(placeholderText: "닉네임을 입력해주세요")
     let nextButton = PointButton(title: "다음")
 
-    let buttonColor = BehaviorSubject(value: UIColor.lightGray)
-    
     let viewModel = NicknameViewModel()
     
     let disposeBag = DisposeBag()
@@ -35,18 +33,9 @@ class NicknameViewController: UIViewController {
     
     func bind() {
         
-        buttonColor
-            .bind(to: nextButton.rx.backgroundColor)
-            .disposed(by: disposeBag)
-        
         viewModel.buttonHidden
             .bind(to: nextButton.rx.isHidden)
             .disposed(by: disposeBag)
-        
-        viewModel.nicknameValidation { [weak self] bool in
-            let color = bool ? UIColor.black : UIColor.lightGray
-            self?.buttonColor.onNext(color)
-        }
         
         nicknameTextField.rx.text.orEmpty
             .bind(to: viewModel.nickname)
