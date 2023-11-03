@@ -10,6 +10,13 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+class SampleViewController: UIViewController {
+    override func viewDidLoad() {
+        view.backgroundColor = .lightGray
+        title = "==\(Int.random(in: 1...100))=="
+    }
+}
+
 class SearchViewController: UIViewController {
      
     private let tableView: UITableView = {
@@ -44,6 +51,12 @@ class SearchViewController: UIViewController {
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
                 cell.appNameLabel.text = element
                 cell.appIconImageView.backgroundColor = .green
+                
+                cell.downloadButton.rx.tap
+                    .subscribe(with: self) { owner, _ in
+                        owner.navigationController?.pushViewController(SampleViewController(), animated: true)
+                    }
+                    .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
         
