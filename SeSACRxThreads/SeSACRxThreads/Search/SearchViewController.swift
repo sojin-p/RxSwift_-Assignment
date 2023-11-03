@@ -64,6 +64,15 @@ class SearchViewController: UIViewController {
                 owner.items.onNext(owner.data)
             }
             .disposed(by: disposeBag)
+        
+        searchBar.rx.text.orEmpty
+            .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe(with: self) { owner, text in
+                let result = text == "" ? owner.data : owner.data.filter { $0.contains(text) }
+                owner.items.onNext(result)
+            }
+            .disposed(by: disposeBag)
 
     }
     
