@@ -23,7 +23,8 @@ class SearchViewController: UIViewController {
     
     let searchBar = UISearchBar()
      
-    var items = BehaviorSubject(value: Array(100...150).map { "안녕하세요 \($0)"})
+    var data = ["a", "b", "c", "d", "addad", "babbdba", "ccdsvda"]
+    lazy var items = BehaviorSubject(value: data)
     
     let disposeBag = DisposeBag()
     
@@ -33,6 +34,7 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .white
         configure()
         bind()
+        setSearchController()
         
     }
      
@@ -49,6 +51,17 @@ class SearchViewController: UIViewController {
             .map { "셀 선택 \($0), \($1)"}
             .subscribe(with: self) { owner, text in
                 print("====",text)
+            }
+            .disposed(by: disposeBag)
+        
+        searchBar.rx.searchButtonClicked
+            .withLatestFrom(searchBar.rx.text.orEmpty, resultSelector: { _, text in
+                return text
+            })
+            .subscribe(with: self) { owner, text in
+                print("===", text)
+                owner.data.insert(text, at: 0)
+                owner.items.onNext(owner.data)
             }
             .disposed(by: disposeBag)
 
