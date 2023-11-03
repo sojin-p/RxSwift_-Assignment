@@ -44,6 +44,13 @@ class SearchViewController: UIViewController {
                 cell.appIconImageView.backgroundColor = .green
             }
             .disposed(by: disposeBag)
+        
+        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(String.self))
+            .map { "셀 선택 \($0), \($1)"}
+            .subscribe(with: self) { owner, text in
+                print("====",text)
+            }
+            .disposed(by: disposeBag)
 
     }
     
