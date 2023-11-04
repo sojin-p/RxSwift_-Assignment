@@ -29,9 +29,8 @@ class SearchViewController: UIViewController {
      }()
     
     let searchBar = UISearchBar()
-     
-    var data = ["a", "b", "c", "d", "addad", "babbdba", "ccdsvda"]
-    lazy var items = BehaviorSubject(value: data)
+    
+    let viewModel = SearchViewModel()
     
     let disposeBag = DisposeBag()
     
@@ -47,7 +46,7 @@ class SearchViewController: UIViewController {
      
     func bind() {
         
-        items
+        viewModel.items
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
                 cell.appNameLabel.text = element
                 cell.appIconImageView.backgroundColor = .green
@@ -73,8 +72,7 @@ class SearchViewController: UIViewController {
             })
             .subscribe(with: self) { owner, text in
                 print("===", text)
-                owner.data.insert(text, at: 0)
-                owner.items.onNext(owner.data)
+                owner.viewModel.insertData(text: text)
             }
             .disposed(by: disposeBag)
         
@@ -82,8 +80,7 @@ class SearchViewController: UIViewController {
             .debounce(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(with: self) { owner, text in
-                let result = text == "" ? owner.data : owner.data.filter { $0.contains(text) }
-                owner.items.onNext(result)
+                owner.viewModel.filterData(text: text)
             }
             .disposed(by: disposeBag)
 
