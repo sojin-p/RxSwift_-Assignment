@@ -34,6 +34,8 @@
 		233C144B2AF4E68500098B37 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14492AF4E68400098B37 /* SearchTableViewCell.swift */; };
 		233C144C2AF4E68500098B37 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C144A2AF4E68500098B37 /* SearchViewController.swift */; };
 		233C144E2AF67FF800098B37 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C144D2AF67FF800098B37 /* SearchViewModel.swift */; };
+		233C14502AF6821500098B37 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C144F2AF6821500098B37 /* ShoppingViewController.swift */; };
+		233C14522AF6835600098B37 /* ShoppingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		233C14492AF4E68400098B37 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		233C144A2AF4E68500098B37 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		233C144D2AF67FF800098B37 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		233C144F2AF6821500098B37 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
+		233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,8 @@
 		233C14452AF4E23800098B37 /* ShoppingList */ = {
 			isa = PBXGroup;
 			children = (
+				233C144F2AF6821500098B37 /* ShoppingViewController.swift */,
+				233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -379,10 +385,12 @@
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
 				233C144B2AF4E68500098B37 /* SearchTableViewCell.swift in Sources */,
 				233C144C2AF4E68500098B37 /* SearchViewController.swift in Sources */,
+				233C14502AF6821500098B37 /* ShoppingViewController.swift in Sources */,
 				0412806A2AEFA91E00972552 /* SignUpViewController.swift in Sources */,
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,
 				233C143D2AF3B0DA00098B37 /* PhoneViewModel.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
+				233C14522AF6835600098B37 /* ShoppingTableViewCell.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
