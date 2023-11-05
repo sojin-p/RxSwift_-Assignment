@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class ShoppingViewController: UIViewController {
     
@@ -22,6 +24,7 @@ final class ShoppingViewController: UIViewController {
         view.backgroundColor = .clear
         view.clearButtonMode = .whileEditing
         view.placeholder = "무엇을 구매하실 건가요?"
+        view.font = .systemFont(ofSize: 15, weight: .light)
         return view
     }()
     
@@ -38,8 +41,13 @@ final class ShoppingViewController: UIViewController {
         let view = UITableView()
         view.register(ShoppingTableViewCell.self, forCellReuseIdentifier: ShoppingTableViewCell.identifier)
         view.backgroundColor = .white
+        view.rowHeight = 50
         return view
     }()
+    
+    let test = BehaviorSubject(value: ["하하ㅏㅎ", "123", "ㅁㅇㄴㅇ", "ㅁㄴㄹ4ㄷㅈㄹㅎㄷ"])
+    
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +55,17 @@ final class ShoppingViewController: UIViewController {
         title = "쇼핑"
         configure()
         setConstraints()
+        bind()
+    }
+    
+    func bind() {
+        
+        test
+            .bind(to: tableView.rx.items(cellIdentifier: ShoppingTableViewCell.identifier, cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
+                cell.listLabel.text = element
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func configure() {
