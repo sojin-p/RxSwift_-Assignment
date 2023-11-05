@@ -72,10 +72,23 @@ final class ShoppingViewController: UIViewController {
                 return text
             })
             .subscribe(with: self) { owner, text in
-                print("======", text)
                 owner.data.insert(text, at: 0)
                 owner.items.onNext(owner.data)
                 owner.textField.text = ""
+            }
+            .disposed(by: disposeBag)
+        
+        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(String.self))
+            .subscribe { [weak self] index, text in
+                print("index: ", index, "text: ", text)
+                let vc = ModifyViewController()
+                vc.data = text
+                vc.completion = { [weak self] text in
+                    self?.data.remove(at: index.row)
+                    self?.data.insert(text, at: index.row)
+                    self?.items.onNext(self?.data ?? [])
+                }
+                self?.present(vc, animated: true)
             }
             .disposed(by: disposeBag)
         
