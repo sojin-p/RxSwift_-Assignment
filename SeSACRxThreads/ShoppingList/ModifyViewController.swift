@@ -46,7 +46,6 @@ final class ModifyViewController: UIViewController {
                 return text
             })
             .subscribe(with: self) { owner, text in
-                print("====리턴키?", text)
                 owner.completion?(text)
                 owner.dismiss(animated: true)
             }
