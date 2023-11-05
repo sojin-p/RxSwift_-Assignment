@@ -37,6 +37,7 @@
 		233C14502AF6821500098B37 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C144F2AF6821500098B37 /* ShoppingViewController.swift */; };
 		233C14522AF6835600098B37 /* ShoppingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */; };
 		233C14542AF77A3500098B37 /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14532AF77A3500098B37 /* ModifyViewController.swift */; };
+		233C14562AF7DDC100098B37 /* ShoppingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14552AF7DDC100098B37 /* ShoppingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		233C144F2AF6821500098B37 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewCell.swift; sourceTree = "<group>"; };
 		233C14532AF77A3500098B37 /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
+		233C14552AF7DDC100098B37 /* ShoppingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				233C144F2AF6821500098B37 /* ShoppingViewController.swift */,
 				233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */,
 				233C14532AF77A3500098B37 /* ModifyViewController.swift */,
+				233C14552AF7DDC100098B37 /* ShoppingViewModel.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				233C144E2AF67FF800098B37 /* SearchViewModel.swift in Sources */,
 				233C143F2AF3BCB100098B37 /* NicknameViewModel.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
+				233C14562AF7DDC100098B37 /* ShoppingViewModel.swift in Sources */,
 				233C143B2AF396FB00098B37 /* BirthdayViewModel.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
