@@ -36,6 +36,7 @@
 		233C144E2AF67FF800098B37 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C144D2AF67FF800098B37 /* SearchViewModel.swift */; };
 		233C14502AF6821500098B37 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C144F2AF6821500098B37 /* ShoppingViewController.swift */; };
 		233C14522AF6835600098B37 /* ShoppingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */; };
+		233C14542AF77A3500098B37 /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14532AF77A3500098B37 /* ModifyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		233C144D2AF67FF800098B37 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		233C144F2AF6821500098B37 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewCell.swift; sourceTree = "<group>"; };
+		233C14532AF77A3500098B37 /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			children = (
 				233C144F2AF6821500098B37 /* ShoppingViewController.swift */,
 				233C14512AF6835600098B37 /* ShoppingTableViewCell.swift */,
+				233C14532AF77A3500098B37 /* ModifyViewController.swift */,
 			);
 			path = ShoppingList;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				233C143D2AF3B0DA00098B37 /* PhoneViewModel.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
 				233C14522AF6835600098B37 /* ShoppingTableViewCell.swift in Sources */,
+				233C14542AF77A3500098B37 /* ModifyViewController.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
