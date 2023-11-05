@@ -45,9 +45,7 @@ final class ShoppingViewController: UIViewController {
         return view
     }()
     
-    var data = ["하하ㅏㅎ", "123", "ㅁㅇㄴㅇ", "ㅁㄴㄹ4ㄷㅈㄹㅎㄷ"]
-    lazy var items = BehaviorSubject(value: data)
-    
+    let viewModel = ShoppingViewModel()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -61,7 +59,7 @@ final class ShoppingViewController: UIViewController {
     
     func bind() {
         
-        items
+        viewModel.items
             .bind(to: tableView.rx.items(cellIdentifier: ShoppingTableViewCell.identifier, cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
                 cell.listLabel.text = element
             }
@@ -72,21 +70,17 @@ final class ShoppingViewController: UIViewController {
                 return text
             })
             .subscribe(with: self) { owner, text in
-                owner.data.insert(text, at: 0)
-                owner.items.onNext(owner.data)
+                owner.viewModel.insertData(text: text)
                 owner.textField.text = ""
             }
             .disposed(by: disposeBag)
         
         Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(String.self))
             .subscribe { [weak self] index, text in
-                print("index: ", index, "text: ", text)
                 let vc = ModifyViewController()
                 vc.data = text
                 vc.completion = { [weak self] text in
-                    self?.data.remove(at: index.row)
-                    self?.data.insert(text, at: index.row)
-                    self?.items.onNext(self?.data ?? [])
+                    self?.viewModel.updateData(at: index.row, text: text)
                 }
                 self?.present(vc, animated: true)
             }
@@ -94,8 +88,7 @@ final class ShoppingViewController: UIViewController {
         
         tableView.rx.itemDeleted
             .subscribe(with: self) { owner, index in
-                owner.data.remove(at: index.row)
-                owner.items.onNext(owner.data)
+                owner.viewModel.removeData(at: index.row)
             }
             .disposed(by: disposeBag)
         
