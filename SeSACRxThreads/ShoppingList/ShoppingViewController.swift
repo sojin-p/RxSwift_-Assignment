@@ -92,6 +92,13 @@ final class ShoppingViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        tableView.rx.itemDeleted
+            .subscribe(with: self) { owner, index in
+                owner.data.remove(at: index.row)
+                owner.items.onNext(owner.data)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     private func configure() {
