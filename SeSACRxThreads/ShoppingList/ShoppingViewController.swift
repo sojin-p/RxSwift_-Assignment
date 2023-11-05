@@ -45,7 +45,8 @@ final class ShoppingViewController: UIViewController {
         return view
     }()
     
-    let test = BehaviorSubject(value: ["하하ㅏㅎ", "123", "ㅁㅇㄴㅇ", "ㅁㄴㄹ4ㄷㅈㄹㅎㄷ"])
+    var data = ["하하ㅏㅎ", "123", "ㅁㅇㄴㅇ", "ㅁㄴㄹ4ㄷㅈㄹㅎㄷ"]
+    lazy var items = BehaviorSubject(value: data)
     
     let disposeBag = DisposeBag()
     
@@ -60,9 +61,21 @@ final class ShoppingViewController: UIViewController {
     
     func bind() {
         
-        test
+        items
             .bind(to: tableView.rx.items(cellIdentifier: ShoppingTableViewCell.identifier, cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
                 cell.listLabel.text = element
+            }
+            .disposed(by: disposeBag)
+        
+        addButton.rx.tap
+            .withLatestFrom(textField.rx.text.orEmpty, resultSelector: { _, text in
+                return text
+            })
+            .subscribe(with: self) { owner, text in
+                print("======", text)
+                owner.data.insert(text, at: 0)
+                owner.items.onNext(owner.data)
+                owner.textField.text = ""
             }
             .disposed(by: disposeBag)
         
